@@ -7,9 +7,9 @@ namespace Webapi.Decorators
 {
     public class DatabaseRetryDecorator<TCommand> : ICommandHandler<TCommand> where TCommand : ICommand
     {
-
         private readonly ICommandHandler<TCommand> _handler;
         private readonly Config _config;
+        
         public DatabaseRetryDecorator(ICommandHandler<TCommand> handler, Config config)
         {
             _handler = handler;

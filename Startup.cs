@@ -42,15 +42,15 @@ namespace Webapi
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-            
+
             var config = new Config(3);
             services.AddSingleton(config);
-            
+
             // >> FIRST IMPLEMENTATION <<
-            // services.AddTransient<ICommandHandler<EditStatusCommand>, EditStatusCommandHandler>();             
+            // services.AddTransient<ICommandHandler<EditStatusCommand>, EditStatusCommandHandler>();
 
             // >> SECOND IMPLEMENTATION <<
-            // services.AddTransient<ICommandHandler<EditStatusCommand>>(provier => 
+            // services.AddTransient<ICommandHandler<EditStatusCommand>>(provier =>
             //     new DatabaseRetryDecorator<EditStatusCommand>(
             //         new EditStatusCommandHandler(provier.GetService<ApplicationDbContext>(), provier.GetService<IMapper>()), provier.GetService<Config>()
             // ));
@@ -64,6 +64,11 @@ namespace Webapi
 
             // >> FORTH IMPLEMENTATION <<
             services.AddHandlers();
+
+            // >> NOTE <<
+            // -> this part is for ISessionFactory which I don't have cause I use 
+            // var connectionString = new ConnectionString(Configuration.GetConnectionString("DefaultConnection"));
+            // services.AddSingleton(connectionString); 
 
             services.AddSwaggerGen(c =>
             {

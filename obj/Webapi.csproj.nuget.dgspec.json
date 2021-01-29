@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Playground\\Webapi\\Webapi.csproj": {}
+    "D:\\Playground\\CQRS\\Webapi.csproj": {}
   },
   "projects": {
-    "D:\\Playground\\Webapi\\Webapi.csproj": {
+    "D:\\Playground\\CQRS\\Webapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Playground\\Webapi\\Webapi.csproj",
+        "projectUniqueName": "D:\\Playground\\CQRS\\Webapi.csproj",
         "projectName": "Webapi",
-        "projectPath": "D:\\Playground\\Webapi\\Webapi.csproj",
+        "projectPath": "D:\\Playground\\CQRS\\Webapi.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\Playground\\Webapi\\obj\\",
+        "outputPath": "D:\\Playground\\CQRS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

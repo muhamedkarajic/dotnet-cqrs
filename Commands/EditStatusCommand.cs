@@ -11,43 +11,42 @@ namespace Webapi.Commands
     {
         public int Id { get; set; }
         public bool Status { get; set; }
-    }
-    [DatabaseRetry]
-    [AuditLog]
-    public sealed class EditStatusCommandHandler : ICommandHandler<EditStatusCommand>
-    {
-        IMapper mapper;
-        ApplicationDbContext context;
-        public EditStatusCommandHandler(ApplicationDbContext context, IMapper mapper)
-        {
-            this.mapper = mapper;
-            this.context = context;
-        }
 
-        public Result Handle(EditStatusCommand command)
+        [AuditLog]
+        [DatabaseRetry]
+        internal sealed class EditStatusCommandHandler : ICommandHandler<EditStatusCommand>
         {
-            try
+            IMapper mapper;
+            ApplicationDbContext context;
+            public EditStatusCommandHandler(ApplicationDbContext context, IMapper mapper)
             {
-                Student student = context.Students.Find(command.Id);
-                if (student == null)
+                this.mapper = mapper;
+                this.context = context;
+            }
+
+            public Result Handle(EditStatusCommand command)
+            {
+                try
                 {
-                    throw new Exception("Student not found.");
+                    Student student = context.Students.Find(command.Id);
+                    if (student == null)
+                    {
+                        throw new Exception("Student not found.");
+                    }
+
+                    mapper.Map(command, student);
+
+                    context.Students.Update(student);
+                    context.SaveChanges();
+                }
+                catch (Exception exception)
+                {
+
+                    return Result.Failure(exception.Message);
                 }
 
-                mapper.Map(command, student);
-
-                context.Students.Update(student);
-                context.SaveChanges();
+                return Result.Success();
             }
-            catch (Exception exception)
-            {
-
-                return Result.Failure(exception.Message);
-            }
-
-            return Result.Success();
         }
     }
-
-
 }

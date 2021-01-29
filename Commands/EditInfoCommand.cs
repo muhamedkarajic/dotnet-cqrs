@@ -12,47 +12,45 @@ namespace Webapi.Commands
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-    }
 
-    [DatabaseRetry]
-    [AuditLog]
-    public sealed class EditInfoCommandHandler : ICommandHandler<EditInfoCommand>
-    {
-        IMapper mapper;
-        ApplicationDbContext context;
-        public EditInfoCommandHandler(ApplicationDbContext context, IMapper mapper)
+        [AuditLog]
+        [DatabaseRetry]
+        internal sealed class EditInfoCommandHandler : ICommandHandler<EditInfoCommand>
         {
-            this.mapper = mapper;
-            this.context = context;
-        }
-
-        public Result Handle(EditInfoCommand command)
-        {
-            try
+            IMapper mapper;
+            ApplicationDbContext context;
+            public EditInfoCommandHandler(ApplicationDbContext context, IMapper mapper)
             {
-                Student student = context.Students.Find(command.Id);
+                this.mapper = mapper;
+                this.context = context;
+            }
 
-                if (student == null)
+            public Result Handle(EditInfoCommand command)
+            {
+                try
                 {
-                    throw new Exception("Student not found.");
+                    Student student = context.Students.Find(command.Id);
+
+                    if (student == null)
+                    {
+                        throw new Exception("Student not found.");
+                    }
+
+                    mapper.Map(command, student);
+                    // student.Email = dto.Email;
+                    // student.Name = dto.Name;
+
+                    context.Students.Update(student);
+                    context.SaveChanges();
+                }
+                catch (Exception exception)
+                {
+
+                    return Result.Failure(exception.Message);
                 }
 
-                mapper.Map(command, student);
-                // student.Email = dto.Email;
-                // student.Name = dto.Name;
-
-                context.Students.Update(student);
-                context.SaveChanges();
+                return Result.Success();
             }
-            catch (Exception exception)
-            {
-
-                return Result.Failure(exception.Message);
-            }
-
-            return Result.Success();
         }
     }
-
-
 }

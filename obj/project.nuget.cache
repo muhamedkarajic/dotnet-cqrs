@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uw+uk7yn/Lm41mjEaGgabUfmuLeI5qCLtmeYjBnONC9MRsR9pyyCAZSfyqOMF7Qz7Qin22tUUjRmTrsF7ap/YA==",
+  "dgSpecHash": "RjwjZo2O9qFmeFXCJ2lXrHW9Djm+18tlJtjfmVUuaAAGR/5xr60xkMYgcvTPOHDKdZ5JPbzLsB/gOVEfbYmovw==",
   "success": true,
-  "projectFilePath": "D:\\Playground\\Webapi\\Webapi.csproj",
+  "projectFilePath": "D:\\Playground\\CQRS\\Webapi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\csharpfunctionalextensions\\2.14.1\\csharpfunctionalextensions.2.14.1.nupkg.sha512",

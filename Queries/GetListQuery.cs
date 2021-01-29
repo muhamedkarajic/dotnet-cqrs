@@ -18,6 +18,8 @@ namespace Webapi.Queries
             Email = email;
             Status = status;
         }
+
+        //maybe query can go here?
     }
     
     public sealed class GetListQueryHandler: IQueryHandler<GetListQuery, List<Student>>
